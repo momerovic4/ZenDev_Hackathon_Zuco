@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "tWHozht/MVBpdKAj9TI1wbRCVsst/uk9b88pbDR4U1kv3TQ9DwJeH/6MfEJM6WntHc2rd61TndzKLnLjMUsNdg==",
+  "dgSpecHash": "bn+L0jUEKn9g3AA6bLQZUFAAYAOle+P7AJtnA8vwjA0l/AXH4Yp5YKLJ7Sv54qwjeuRgDhyaQpQnm47h41/QPA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Muhamed\\source\\repos\\ZucoBiHBackend\\ZucoBiHBackend\\ZucoBiHBackend.csproj",
+  "projectFilePath": "C:\\Users\\Muhamed\\source\\repos\\ZucoBiH\\ZucoBiHBackend\\ZucoBiHBackend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Muhamed\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\Muhamed\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Muhamed\\source\\repos\\ZucoBiHBackend\\ZucoBiHBackend\\ZucoBiHBackend.csproj": {}
+    "C:\\Users\\Muhamed\\source\\repos\\ZucoBiH\\ZucoBiHBackend\\ZucoBiHBackend.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Muhamed\\source\\repos\\ZucoBiHBackend\\ZucoBiHBackend\\ZucoBiHBackend.csproj": {
+    "C:\\Users\\Muhamed\\source\\repos\\ZucoBiH\\ZucoBiHBackend\\ZucoBiHBackend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Muhamed\\source\\repos\\ZucoBiHBackend\\ZucoBiHBackend\\ZucoBiHBackend.csproj",
+        "projectUniqueName": "C:\\Users\\Muhamed\\source\\repos\\ZucoBiH\\ZucoBiHBackend\\ZucoBiHBackend.csproj",
         "projectName": "ZucoBiHBackend",
-        "projectPath": "C:\\Users\\Muhamed\\source\\repos\\ZucoBiHBackend\\ZucoBiHBackend\\ZucoBiHBackend.csproj",
+        "projectPath": "C:\\Users\\Muhamed\\source\\repos\\ZucoBiH\\ZucoBiHBackend\\ZucoBiHBackend.csproj",
         "packagesPath": "C:\\Users\\Muhamed\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Muhamed\\source\\repos\\ZucoBiHBackend\\ZucoBiHBackend\\obj\\",
+        "outputPath": "C:\\Users\\Muhamed\\source\\repos\\ZucoBiH\\ZucoBiHBackend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Muhamed\\AppData\\Roaming\\NuGet\\NuGet.Config",
