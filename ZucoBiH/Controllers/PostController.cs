@@ -15,13 +15,6 @@ namespace ZucoBiH.Controllers
             _context = context;
         }
 
-        // GET: api/posts
-        [HttpGet("posts")]
-        public async Task<ActionResult<IEnumerable<Post>>> GetPostModels()
-        {
-            return await _context.Posts.ToListAsync();
-        }
-
         // GET: api/Posts/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Post>> GetPostModel(int id)
@@ -34,6 +27,23 @@ namespace ZucoBiH.Controllers
             }
 
             return postModel;
+        }
+
+        [HttpGet("posts")]
+        public IEnumerable<Post> GetPostModel([FromQuery] QueryParameters parameters)
+        {
+            var page = parameters.page;
+            var size = parameters.size;
+
+            if (page == 0)
+                page = 1;
+
+            if (size == 0)
+                size = int.MaxValue;
+
+            var skip = (page - 1) * size;
+
+            return _context.Posts.Skip(skip).Take(size).AsEnumerable();
         }
 
         // DELETE: api/Posts/5
@@ -61,5 +71,11 @@ namespace ZucoBiH.Controllers
 
             return CreatedAtAction(nameof(PostModel), new { id = postModel.Id }, postModel);
         }
+    }
+
+    public class QueryParameters
+    {
+        public int size { get; set; }
+        public int page { get; set; }
     }
 }
