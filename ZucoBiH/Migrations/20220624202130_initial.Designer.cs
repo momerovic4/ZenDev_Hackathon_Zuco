@@ -12,8 +12,8 @@ using ZucoBiH;
 namespace ZucoBiH.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20220624174423_inital")]
-    partial class inital
+    [Migration("20220624202130_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -55,6 +55,9 @@ namespace ZucoBiH.Migrations
 
                     b.Property<double>("Logngitude")
                         .HasColumnType("float");
+
+                    b.Property<bool>("Positive")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Title")
                         .IsRequired()

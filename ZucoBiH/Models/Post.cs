@@ -12,5 +12,6 @@ namespace ZucoBiH.Models
         public string Category { get; set; }
         public string Image64 { get; set; }
         public bool Done { get; set; }
+        public bool Positive { get; set; }
     }
 }

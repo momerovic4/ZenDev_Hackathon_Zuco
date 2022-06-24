@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ZucoBiH.Migrations
 {
-    public partial class inital : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -22,7 +22,8 @@ namespace ZucoBiH.Migrations
                     Latitude = table.Column<double>(type: "float", nullable: false),
                     Category = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Image64 = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Done = table.Column<bool>(type: "bit", nullable: false)
+                    Done = table.Column<bool>(type: "bit", nullable: false),
+                    Positive = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {

@@ -54,6 +54,9 @@ namespace ZucoBiH.Migrations
                     b.Property<double>("Logngitude")
                         .HasColumnType("float");
 
+                    b.Property<bool>("Positive")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
