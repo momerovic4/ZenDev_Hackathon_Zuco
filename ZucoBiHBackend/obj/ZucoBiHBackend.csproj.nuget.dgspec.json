@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Muhamed\\source\\repos\\ZucoBiH\\ZucoBiHBackend\\ZucoBiHBackend.csproj": {}
+    "C:\\Users\\38762\\Source\\Repos\\alhamijado-backend\\ZucoBiHBackend\\ZucoBiHBackend.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Muhamed\\source\\repos\\ZucoBiH\\ZucoBiHBackend\\ZucoBiHBackend.csproj": {
+    "C:\\Users\\38762\\Source\\Repos\\alhamijado-backend\\ZucoBiHBackend\\ZucoBiHBackend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Muhamed\\source\\repos\\ZucoBiH\\ZucoBiHBackend\\ZucoBiHBackend.csproj",
+        "projectUniqueName": "C:\\Users\\38762\\Source\\Repos\\alhamijado-backend\\ZucoBiHBackend\\ZucoBiHBackend.csproj",
         "projectName": "ZucoBiHBackend",
-        "projectPath": "C:\\Users\\Muhamed\\source\\repos\\ZucoBiH\\ZucoBiHBackend\\ZucoBiHBackend.csproj",
-        "packagesPath": "C:\\Users\\Muhamed\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Muhamed\\source\\repos\\ZucoBiH\\ZucoBiHBackend\\obj\\",
+        "projectPath": "C:\\Users\\38762\\Source\\Repos\\alhamijado-backend\\ZucoBiHBackend\\ZucoBiHBackend.csproj",
+        "packagesPath": "C:\\Users\\38762\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\38762\\Source\\Repos\\alhamijado-backend\\ZucoBiHBackend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Muhamed\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\38762\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -40,9 +40,21 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.6, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[6.0.6, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.2.3, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.3, )"
             }
           },
           "imports": [
