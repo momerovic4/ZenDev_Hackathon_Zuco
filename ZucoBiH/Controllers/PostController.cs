@@ -71,6 +71,19 @@ namespace ZucoBiH.Controllers
 
             return CreatedAtAction(nameof(PostModel), new { id = postModel.Id }, postModel);
         }
+        [HttpGet("pages")]
+        public int GetPagesModel([FromQuery] QueryParameters parameters)
+        {
+            double count = _context.Posts.Count();
+            var size = parameters.size;//po stranici itema
+
+            if (size == 0)
+                size = 6;
+
+            int pages = (int)Math.Ceiling(count / size);
+
+            return pages;
+        }
     }
 
     public class QueryParameters
