@@ -226,7 +226,7 @@ namespace ZucoBiH.Controllers
             }
 
 
-            double count = _context.Posts.Count();
+            double count = query.Count();
 
 
             return new PostsResponse((int)Math.Ceiling(count / 6),query.AsEnumerable());
