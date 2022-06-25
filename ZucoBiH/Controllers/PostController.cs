@@ -24,7 +24,6 @@ namespace ZucoBiH.Controllers
             mockData.Add(new Post
             {
                 Title = "Plasticna flasa",
-                CreatedDate = DateTime.Now,
                 Description = "Plasticna flasa i drugo smece pored puta u sumi u Osjeku, ulica Rate Dugonjica. Vec mjesec dana neko baca smece ovdje",
                 Longitude = 18.279679969937497,
                 Latitude = 43.83790896691867,
@@ -38,7 +37,6 @@ namespace ZucoBiH.Controllers
             mockData.Add(new Post
             {
                 Title = "Konzerve i flase",
-                CreatedDate = DateTime.Now,
                 Description = "Konzerve i ostalo smece blizu supe u Doglodima",
                 Longitude = 18.288188817601792,
                 Latitude = 43.87518928675914,
@@ -52,7 +50,6 @@ namespace ZucoBiH.Controllers
             mockData.Add(new Post
             {
                 Title = "Smece pored puta",
-                CreatedDate = DateTime.Now,
                 Description = "Smece pored puta zaglavljeno kod izlaznih cijevi, svaka malo jaca kisa poplavi citavu put zbog smeca",
                 Longitude = 18.384607821025988,
                 Latitude = 43.85663967809939,
@@ -66,7 +63,6 @@ namespace ZucoBiH.Controllers
             mockData.Add(new Post
             {
                 Title = "Grafit na zidu",
-                CreatedDate = DateTime.Now,
                 Description = "Grafit se nedavno pojavio na zidu kod skole, stvarno mislim da nasa djeca ne trebaju ovo imati na zidu skole",
                 Longitude = 18.391353698159442,
                 Latitude = 43.85281742195257,
@@ -80,7 +76,6 @@ namespace ZucoBiH.Controllers
             mockData.Add(new Post
             {
                 Title = "Razbijeni prozori",
-                CreatedDate = DateTime.Now,
                 Description = "Blizu puta razbijeni prozori na kuci i staklo je razbacano po putu",
                 Longitude = 18.39814006378299,
                 Latitude = 43.844869398818695,
@@ -94,7 +89,6 @@ namespace ZucoBiH.Controllers
             mockData.Add(new Post
             {
                 Title = "Auta blokiraju put",
-                CreatedDate = DateTime.Now,
                 Description = "dva auta ilegalno parkirana na glavnoj ulici",
                 Longitude = 18.399418193065614,
                 Latitude = 43.84601214073594,
@@ -108,7 +102,6 @@ namespace ZucoBiH.Controllers
             mockData.Add(new Post
             {
                 Title = "Auto parkirano na trotoaru",
-                CreatedDate = DateTime.Now,
                 Description = "blokira prolaz pjesacima, svaku noc na isto mjesto parkira",
                 Longitude = 18.31867238137731,
                 Latitude = 43.80804185023823,
