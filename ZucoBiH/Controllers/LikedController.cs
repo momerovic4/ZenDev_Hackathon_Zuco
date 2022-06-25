@@ -10,14 +10,14 @@ namespace ZucoBiH.Controllers
         private readonly Context _context;
 
         // GET api/<ValuesController>/5
-        [HttpGet("getlikes/{id}")]
+        [HttpGet("getlikes/{postId}")]
         public int Get(int postId)
         {
             return _context.Likes.Where(x => x.PostId == postId).Count();
         }
 
         // PUT api/<ValuesController>/5
-        [HttpPut("like/{id}")]
+        [HttpPut("like/{postId}")]
         public void LikePost(int postId)
         {
             string kuki = null;
