@@ -229,7 +229,7 @@ namespace ZucoBiH.Controllers
             double count = query.Count();
 
 
-            return new PostsResponse((int)Math.Ceiling(count / 6),query.AsEnumerable());
+            return new PostsResponse((int)Math.Ceiling(count / size),query.AsEnumerable());
         }
 
         // DELETE: api/Posts/5
