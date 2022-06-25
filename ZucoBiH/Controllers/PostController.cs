@@ -174,8 +174,8 @@ namespace ZucoBiH.Controllers
         {
             var page = parameters.page;
             var size = parameters.size;
-            var sort = parameters.sort is null ? parameters.category.ToLower() : null;
-            var category = parameters.category is null ? parameters.category.ToLower() : null;
+            var sort = parameters.sort;
+            var category = parameters.category;
             var approved = parameters.approved;
             var positive = parameters.positive;
 
@@ -190,7 +190,7 @@ namespace ZucoBiH.Controllers
             var query = _context.Posts.AsQueryable();
 
             if (!String.IsNullOrEmpty(category))
-            { 
+            {
                 query.Where(x => x.Category == category);
             }
 
@@ -204,13 +204,13 @@ namespace ZucoBiH.Controllers
                 query.Where(x => x.Positive == positive);
             }
 
-            query.Skip(skip).Take(size);
+            query = query.Skip(skip).Take(size);
 
             if (!String.IsNullOrEmpty(sort))
             {
-                if(sort.Equals("asc"))
+                if (sort.Equals("asc"))
                     query.OrderBy(x => x.CreatedDate);
-                else if(sort.Equals("desc"))
+                else if (sort.Equals("desc"))
                     query.OrderByDescending(x => x.CreatedDate);
             }
 
@@ -269,9 +269,9 @@ namespace ZucoBiH.Controllers
     {
         public int size { get; set; }
         public int page { get; set; }
-        public string category { get; set; }
+        public string? category { get; set; }
         public bool? approved { get; set; }
         public bool? positive { get; set; }
-        public string sort { get; set; }
+        public string? sort { get; set; }
     }
 }
