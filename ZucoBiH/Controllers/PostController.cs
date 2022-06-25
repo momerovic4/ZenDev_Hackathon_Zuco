@@ -178,7 +178,7 @@ namespace ZucoBiH.Controllers
         }
 
         [HttpGet("posts")]
-        public IEnumerable<Post> GetPostModel([FromQuery] QueryParameters parameters)
+        public PostsResponse GetPostModel([FromQuery] QueryParameters parameters)
         {
             var page = parameters.page;
             var size = parameters.size;
@@ -222,7 +222,11 @@ namespace ZucoBiH.Controllers
                     query.OrderByDescending(x => x.CreatedDate);
             }
 
-            return query.AsEnumerable();
+
+            double count = _context.Posts.Count();
+
+
+            return new PostsResponse((int)Math.Ceiling(count / 6),query.AsEnumerable());
         }
 
         // DELETE: api/Posts/5
@@ -257,20 +261,6 @@ namespace ZucoBiH.Controllers
 
             return CreatedAtAction(nameof(PostModel), new { id = postModel.Id }, postModel);
         }
-
-        [HttpGet("pages")]
-        public int GetPagesModel([FromQuery] QueryParameters parameters)
-        {
-            double count = _context.Posts.Count();
-            var size = parameters.size;//po stranici itema
-
-            if (size == 0)
-                size = 6;
-
-            int pages = (int)Math.Ceiling(count / size);
-
-            return pages;
-        }
     }
 
     public class QueryParameters
@@ -281,5 +271,17 @@ namespace ZucoBiH.Controllers
         public bool? approved { get; set; }
         public bool? positive { get; set; }
         public string? sort { get; set; }
+    }
+
+    public class PostsResponse
+    {
+        public int numberOfPages { get; set; }
+        public IEnumerable<Post> posts { get; set; }
+
+        public PostsResponse(int v, IEnumerable<Post> enumerable)
+        {
+            this.numberOfPages = v;
+            this.posts = enumerable;
+        }
     }
 }
