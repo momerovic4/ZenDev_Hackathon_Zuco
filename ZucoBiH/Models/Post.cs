@@ -11,6 +11,7 @@ namespace ZucoBiH.Models
         public double Latitude { get; set; }
         public string Category { get; set; }
         public string Image64 { get; set; }
+        public string ImageURL { get; set; }
         public bool Approved { get; set; }
         public bool Positive { get; set; }
     }
