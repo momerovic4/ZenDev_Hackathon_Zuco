@@ -191,17 +191,17 @@ namespace ZucoBiH.Controllers
 
             if (!String.IsNullOrEmpty(category))
             {
-                query.Where(x => x.Category == category);
+                query = query.Where(x => x.Category == category);
             }
 
             if (approved is not null)
             {
-                query.Where(x => x.Approved == approved);
+                query =  query.Where(x => x.Approved == approved);
             }
 
             if (positive is not null)
             {
-                query.Where(x => x.Positive == positive);
+                query =  query.Where(x => x.Positive == positive);
             }
 
             query = query.Skip(skip).Take(size);
