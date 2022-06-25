@@ -9,6 +9,11 @@ namespace ZucoBiH.Controllers
     {
         private readonly Context _context;
 
+        public LikedController(Context context)
+        {
+            _context = context;
+        }
+
         // GET api/<ValuesController>/5
         [HttpGet("getlikes/{postId}")]
         public int Get(int postId)
@@ -26,8 +31,17 @@ namespace ZucoBiH.Controllers
             if (kuki is null)
             {
                 LikePostWithId(postId);
+                var cookie = new KeyValuePair<string, string>("id", Guid.NewGuid().ToString());
+                Response.Cookies.Append(cookie.Key,cookie.Value,
+                    new CookieOptions() {
+                        Expires = DateTime.Now.AddDays(1),
+                        SameSite = SameSiteMode.None,
+                        Secure = true,
+                        Domain = "localhost",
+                        Path = "/"
+                    });
 
-                var response = Request.Cookies.Append(new KeyValuePair<string, string>("id", Guid.NewGuid().ToString()));
+                _context.Likes.Add(new Models.Liked() { PostId = postId, Cookie = cookie.Value });
             }
             else
             {
@@ -36,8 +50,11 @@ namespace ZucoBiH.Controllers
                 if (!hasLiked)
                 {
                     LikePostWithId(postId);
+                    _context.Likes.Add(new Models.Liked() { PostId = postId, Cookie = kuki });
                 }
             }
+
+            _context.SaveChangesAsync();
         }
 
         private async void LikePostWithId(int postId)
@@ -48,7 +65,6 @@ namespace ZucoBiH.Controllers
             {
                 post.Upvote += 1;
                 _context.Update(post);
-                _context.SaveChangesAsync();
             }
         }
     }
