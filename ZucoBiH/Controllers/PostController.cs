@@ -168,6 +168,22 @@ namespace ZucoBiH.Controllers
             return Ok();
         }
 
+        [HttpPut("dissapprove/{id}")]
+        public async Task<IActionResult> DissaprovePutPostModel(int? id)
+        {
+            var model = _context.Posts.FirstOrDefault(x => x.Id == id);
+
+            if (model is null)
+                return BadRequest();
+
+            model.Approved = false;
+            _context.Update(model);
+
+            await _context.SaveChangesAsync();
+
+            return Ok();
+        }
+
         [HttpGet("posts")]
         public IEnumerable<Post> GetPostModel([FromQuery] QueryParameters parameters)
         {
