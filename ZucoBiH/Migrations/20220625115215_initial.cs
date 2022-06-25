@@ -18,12 +18,13 @@ namespace ZucoBiH.Migrations
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Logngitude = table.Column<double>(type: "float", nullable: false),
+                    Longitude = table.Column<double>(type: "float", nullable: false),
                     Latitude = table.Column<double>(type: "float", nullable: false),
                     Category = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Image64 = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Done = table.Column<bool>(type: "bit", nullable: false),
-                    Positive = table.Column<bool>(type: "bit", nullable: false)
+                    Approved = table.Column<bool>(type: "bit", nullable: false),
+                    Positive = table.Column<bool>(type: "bit", nullable: false),
+                    Upvote = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {

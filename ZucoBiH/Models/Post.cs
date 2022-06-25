@@ -13,5 +13,6 @@ namespace ZucoBiH.Models
         public string Image64 { get; set; }
         public bool Approved { get; set; }
         public bool Positive { get; set; }
+        public int Upvote { get; set; } = 0;
     }
 }

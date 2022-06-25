@@ -30,6 +30,9 @@ namespace ZucoBiH.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<bool>("Approved")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Category")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -41,9 +44,6 @@ namespace ZucoBiH.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("Done")
-                        .HasColumnType("bit");
-
                     b.Property<string>("Image64")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -51,7 +51,7 @@ namespace ZucoBiH.Migrations
                     b.Property<double>("Latitude")
                         .HasColumnType("float");
 
-                    b.Property<double>("Logngitude")
+                    b.Property<double>("Longitude")
                         .HasColumnType("float");
 
                     b.Property<bool>("Positive")
@@ -60,6 +60,9 @@ namespace ZucoBiH.Migrations
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Upvote")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
