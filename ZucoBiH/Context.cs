@@ -8,6 +8,7 @@ namespace ZucoBiH
     {
 
         public virtual DbSet<Post> Posts { get; set; }
+        public virtual DbSet<Liked> Likes { get; set; }
 
         public Context([NotNull] DbContextOptions<Context> options) : base(options)
         {

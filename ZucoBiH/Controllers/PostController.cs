@@ -145,6 +145,22 @@ namespace ZucoBiH.Controllers
             return postModel;
         }
 
+        [HttpPut("upvote/{id}")]
+        public async Task<IActionResult> UpvotePost(int? id)
+        {
+            var model = _context.Posts.FirstOrDefault(x => x.Id == id);
+
+            if (model is null)
+                return BadRequest();
+
+            model.Upvote += 1;
+            _context.Update(model);
+
+            await _context.SaveChangesAsync();
+
+            return Ok();
+        }
+
         [HttpPut("approve/{id}")]
         public async Task<IActionResult> PutPostModel(int? id)
         {
