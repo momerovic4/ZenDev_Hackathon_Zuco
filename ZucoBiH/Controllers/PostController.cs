@@ -42,6 +42,23 @@ namespace ZucoBiH.Controllers
             return postModel;
         }
 
+        [HttpPut("approve/{id}")]
+        public async Task<IActionResult> PutPostModel(int id, Post postModel)
+        {
+            if (id != postModel.Id)
+            {
+                return BadRequest();
+            }
+
+            postModel.Approved = true;
+
+            _context.Update(postModel);
+
+            await _context.SaveChangesAsync();
+
+            return Ok();
+        }
+
         [HttpGet("posts")]
         public IEnumerable<Post> GetPostModel([FromQuery] QueryParameters parameters)
         {
