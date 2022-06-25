@@ -29,6 +29,36 @@ namespace ZucoBiH.Controllers
 
             return postModel;
         }
+        // GET: api/Posts/5
+        [HttpGet("notapproved")]
+        public async Task<ActionResult<List<Post>>> GetPostModel()
+        {
+            var postModel = await _context.Posts.Where(x => x.Approved == false).ToListAsync();
+
+            if (postModel == null)
+            {
+                return NotFound();
+            }
+
+            return postModel;
+        }
+
+        [HttpPut("approve/{id}")]
+        public async Task<IActionResult> PutPostModel(int id, Post postModel)
+        {
+            if (id != postModel.Id)
+            {
+                return BadRequest();
+            }
+
+            postModel.Approved = true;
+
+            _context.Update(postModel);
+
+            await _context.SaveChangesAsync();
+
+            return Ok();
+        }
 
         [HttpGet("posts")]
         public IEnumerable<Post> GetPostModel([FromQuery] QueryParameters parameters)
