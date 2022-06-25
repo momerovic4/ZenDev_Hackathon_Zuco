@@ -16,12 +16,13 @@ namespace ZucoBiH.Controllers
             _context = context;
         }
 
-        [HttpPost("post")]
+        [HttpPost("addmockdata")]
         public async Task<ActionResult<Post>> PopulateDatabase()
         {
             var mockData = new List<Post>();
 
-            mockData.Add(new Post {
+            mockData.Add(new Post
+            {
                 Title = "Plasticna flasa",
                 CreatedDate = DateTime.Now,
                 Description = "Plasticna flasa i drugo smece pored puta u sumi u Osjeku, ulica Rate Dugonjica. Vec mjesec dana neko baca smece ovdje",

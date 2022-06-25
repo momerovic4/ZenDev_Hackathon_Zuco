@@ -11,7 +11,7 @@ builder.Services.AddBackendServices();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v2" });
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
 });
 builder.Services.AddMvc(options =>
 {
@@ -21,7 +21,9 @@ builder.Services.AddMvc(options =>
 var app = builder.Build();
 
 app.UseSwagger();
-app.UseSwaggerUI();
+app.UseSwaggerUI(c => {
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Web API V1");
+});
 
 app.UseHttpsRedirection();
 
