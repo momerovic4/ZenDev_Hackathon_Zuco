@@ -153,16 +153,15 @@ namespace ZucoBiH.Controllers
         }
 
         [HttpPut("approve/{id}")]
-        public async Task<IActionResult> PutPostModel(int id, Post postModel)
+        public async Task<IActionResult> PutPostModel(int? id)
         {
-            if (id != postModel.Id)
-            {
-                return BadRequest();
-            }
+            var model = _context.Posts.FirstOrDefault(x => x.Id == id);
 
-            postModel.Approved = true;
+            if(model is null) 
+                    return BadRequest();
 
-            _context.Update(postModel);
+            model.Approved = true;
+            _context.Update(model);
 
             await _context.SaveChangesAsync();
 
