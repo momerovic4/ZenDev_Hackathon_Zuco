@@ -9,9 +9,8 @@ namespace ZucoBiH.Helper
 
         public async Task<string> DetectGarbage(string imag64)
         {
-            var novi = imag64.Substring(23);
 
-            string json = Newtonsoft.Json.JsonConvert.SerializeObject(new { slika = novi });
+            string json = Newtonsoft.Json.JsonConvert.SerializeObject(new { slika = imag64 });
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
             var result = await client.PostAsync("http://34.232.16.103:80/api/obradisliku", content);

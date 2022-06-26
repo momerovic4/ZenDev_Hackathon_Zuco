@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ZucoBiH.Models;
 using ZucoBiH.Helper;
+using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
+using System.Net;
 
 namespace ZucoBiH.Controllers
 {
@@ -11,6 +14,12 @@ namespace ZucoBiH.Controllers
     public class PostController : ControllerBase
     {
         private readonly Context _context;
+
+        Account account = new Account(
+          "uak",
+          "771168737253287",
+          "nrfe5FViVKl1OaCwAi3Sza2FgCo");
+
         public PostController(Context context)
         {
             _context = context;
@@ -269,17 +278,73 @@ namespace ZucoBiH.Controllers
         [HttpPost("post")]
         public async Task<ActionResult<Post>> PostModel(Post postModel)
         {
+            Cloudinary cloudinary = new Cloudinary(account);
+
             var dg = new GarbageDetector();
             if (postModel.Category.Equals("Smece"))
             {
                 var returnImage = await dg.DetectGarbage(postModel.Image64);
-                postModel.Image64 = "data:image/jpeg;base64," + returnImage;
+
+                //vraceno iz AI-a
+                var bytes = Convert.FromBase64String(returnImage);
+                var contents = new StreamContent(new MemoryStream(bytes));
+
+                var uploadParams = new ImageUploadParams()
+                {
+                    File = new FileDescription("image", contents.ReadAsStream()),
+                    PublicId = Guid.NewGuid().ToString(),
+                };
+
+                //upload image
+                var uploadResult = cloudinary.Upload(uploadParams);
+
+                if (uploadResult.StatusCode == HttpStatusCode.OK)
+                {
+                    //uspjesno uploadana slika
+                    postModel.ImageURL = uploadResult.Url.ToString();
+
+                    //add to db
+                    _context.Posts.Add(postModel);
+                    await _context.SaveChangesAsync();
+
+                    return CreatedAtAction(nameof(PostModel), new { id = postModel.Id }, postModel);
+                }
+                else
+                {
+                    return BadRequest();
+                }
+
             }
+            else
+            {
+                var bytes = Convert.FromBase64String(postModel.Image64);
+                var contents = new StreamContent(new MemoryStream(bytes));
 
-            _context.Posts.Add(postModel);
-            await _context.SaveChangesAsync();
+                var uploadParams = new ImageUploadParams()
+                {
+                    File = new FileDescription("image", contents.ReadAsStream()),
+                    PublicId = Guid.NewGuid().ToString(),
+                };
 
-            return CreatedAtAction(nameof(PostModel), new { id = postModel.Id }, postModel);
+                //upload image
+                var uploadResult = cloudinary.Upload(uploadParams);
+
+                if (uploadResult.StatusCode == HttpStatusCode.OK)
+                {
+                    //uspjesno uploadana slika
+                    postModel.ImageURL = uploadResult.Url.ToString();
+
+                    //add to db
+                    _context.Posts.Add(postModel);
+                    await _context.SaveChangesAsync();
+
+                    return CreatedAtAction(nameof(PostModel), new { id = postModel.Id }, postModel);
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
         }
     }
 
