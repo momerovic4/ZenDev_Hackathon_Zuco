@@ -189,6 +189,7 @@ namespace ZucoBiH.Controllers
             var category = parameters.category;
             var approved = parameters.approved;
             var positive = parameters.positive;
+            var sortByVotes = parameters.sortByVotes;
 
             if (page == 0)
                 page = 1;
@@ -215,19 +216,35 @@ namespace ZucoBiH.Controllers
                 query =  query.Where(x => x.Positive == positive);
             }
 
+            double count = query.Count();
+
             query = query.Skip(skip).Take(size);
 
             if (!String.IsNullOrEmpty(sort))
             {
                 if (sort.Equals("asc"))
-                    query.OrderBy(x => x.CreatedDate);
+                {
+                    if (sortByVotes == true)
+                    {
+                        query = query.OrderBy(x => x.Upvote);
+                    }
+                    else
+                    {
+                        query = query.OrderBy(x => x.CreatedDate);
+                    }
+                }
                 else if (sort.Equals("desc"))
-                    query.OrderByDescending(x => x.CreatedDate);
+                {
+                    if (sortByVotes == true)
+                    {
+                        query = query.OrderByDescending(x => x.Upvote);
+                    }
+                    else
+                    {
+                        query = query.OrderByDescending(x => x.CreatedDate);
+                    }
+                }
             }
-
-
-            double count = query.Count();
-
 
             return new PostsResponse((int)Math.Ceiling(count / size),query.AsEnumerable());
         }
@@ -274,6 +291,7 @@ namespace ZucoBiH.Controllers
         public bool? approved { get; set; }
         public bool? positive { get; set; }
         public string? sort { get; set; }
+        public bool? sortByVotes { get; set; }
     }
 
     public class PostsResponse

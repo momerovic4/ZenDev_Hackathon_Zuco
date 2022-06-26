@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Web;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -23,38 +24,31 @@ namespace ZucoBiH.Controllers
 
         // PUT api/<ValuesController>/5
         [HttpPut("like/{postId}")]
-        public void LikePost(int postId)
+        public ActionResult<UserHash> LikePost(int postId, UserHash kuki)
         {
-            string kuki = null;
-            Request.Cookies.TryGetValue("id", out kuki);
-
-            if (kuki is null)
+            if (kuki.Value is null)
             {
                 LikePostWithId(postId);
-                var cookie = new KeyValuePair<string, string>("id", Guid.NewGuid().ToString());
-                Response.Cookies.Append(cookie.Key,cookie.Value,
-                    new CookieOptions() {
-                        Expires = DateTime.Now.AddDays(1),
-                        SameSite = SameSiteMode.None,
-                        Secure = true,
-                        Domain = "localhost",
-                        Path = "/"
-                    });
+                var newValue = Guid.NewGuid().ToString();
 
-                _context.Likes.Add(new Models.Liked() { PostId = postId, Cookie = cookie.Value });
+                _context.Likes.Add(new Models.Liked() { PostId = postId, Cookie = newValue });
+                _context.SaveChangesAsync();
+                return new UserHash() { Value = newValue };
             }
             else
             {
-                var hasLiked = _context.Likes.Where(l => l.PostId == postId && l.Cookie == kuki).Any();
+                var hasLiked = _context.Likes.Where(l => l.PostId == postId && l.Cookie == kuki.Value).Any();
 
                 if (!hasLiked)
                 {
                     LikePostWithId(postId);
-                    _context.Likes.Add(new Models.Liked() { PostId = postId, Cookie = kuki });
+                    _context.Likes.Add(new Models.Liked() { PostId = postId, Cookie = kuki.Value });
+                    _context.SaveChangesAsync();
+                    return kuki;
                 }
             }
 
-            _context.SaveChangesAsync();
+            return BadRequest();
         }
 
         private async void LikePostWithId(int postId)
@@ -67,5 +61,10 @@ namespace ZucoBiH.Controllers
                 _context.Update(post);
             }
         }
+    }
+
+    public class UserHash
+    {
+        public string? Value { get; set; }
     }
 }
