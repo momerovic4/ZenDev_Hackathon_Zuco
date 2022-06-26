@@ -105,7 +105,7 @@ namespace ZucoBiH.Controllers
             return Ok();
         }
 
-        // GET: api/Posts/5
+        // GET: api/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Post>> GetPostModel(int id)
         {
@@ -118,7 +118,8 @@ namespace ZucoBiH.Controllers
 
             return postModel;
         }
-        // GET: api/Posts/5
+
+        // GET: api/notapproved
         [HttpGet("notapproved")]
         public async Task<ActionResult<List<Post>>> GetPostModel()
         {
@@ -132,6 +133,7 @@ namespace ZucoBiH.Controllers
             return postModel;
         }
 
+        // PUT: api/upvote/4
         [HttpPut("upvote/{id}")]
         public async Task<IActionResult> UpvotePost(int? id)
         {
@@ -148,6 +150,7 @@ namespace ZucoBiH.Controllers
             return Ok();
         }
 
+        // PUT: api/approve/5
         [HttpPut("approve/{id}")]
         public async Task<IActionResult> PutPostModel(int? id)
         {
@@ -164,6 +167,7 @@ namespace ZucoBiH.Controllers
             return Ok();
         }
 
+        // PUT: api/dissapprove/4
         [HttpPut("dissapprove/{id}")]
         public async Task<IActionResult> DissaprovePutPostModel(int? id)
         {
@@ -180,6 +184,7 @@ namespace ZucoBiH.Controllers
             return Ok();
         }
 
+        // GET: api/posts
         [HttpGet("posts")]
         public PostsResponse GetPostModel([FromQuery] QueryParameters parameters)
         {
@@ -249,7 +254,7 @@ namespace ZucoBiH.Controllers
             return new PostsResponse((int)Math.Ceiling(count / size),query.AsEnumerable());
         }
 
-        // DELETE: api/Posts/5
+        // DELETE: api/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePostModel(int id)
         {
@@ -265,7 +270,7 @@ namespace ZucoBiH.Controllers
             return NoContent();
         }
 
-        // POST: api/Posts
+        // POST: api/post
         [HttpPost("post")]
         public async Task<ActionResult<Post>> PostModel(Post postModel)
         {
